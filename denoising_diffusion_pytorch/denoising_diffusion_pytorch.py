@@ -566,22 +566,11 @@ class GaussianDiffusion(nn.Module):
 
             print(alphas.shape, alphas)
 
-        # print("alphas shape", alphas.shape) # torch.Size([1024]) equals the number of steps
-
         alphas_cumprod = torch.cumprod(alphas, dim=0)
         alphas_cumprod_prev = F.pad(alphas_cumprod[:-1], (1, 0), value = 1.)
 
-        # if is_student:
-        #     print("alphas_c_teacher shape", teacher.alphas_cumprod.shape, teacher.alphas_cumprod)
-        #     print("alphas_c shape", alphas_cumprod.shape, alphas_cumprod)
-        #     for t in range(0, timesteps):
-        #         print(teacher.alphas_cumprod[t*c_value])
-        #         print(alphas_cumprod[t])
-
         timesteps, = betas.shape
         self.num_timesteps = int(timesteps)
-
-        # sampling related parameters
 
         self.sampling_timesteps = default(sampling_timesteps, timesteps) # default num sampling timesteps to number of timesteps at training
 
@@ -685,17 +674,8 @@ class GaussianDiffusion(nn.Module):
         return posterior_mean, posterior_variance, posterior_log_variance_clipped
 
     def model_predictions(self, x, t, x_self_cond = None, clip_x_start = False, rederive_pred_noise = False):
-        # if self.is_student:
-        #     model_output = self.model(x, self.c_value*t, x_self_cond)
-        # else:
-        #     model_output = self.model(x, t, x_self_cond)
 
         model_output = self.model(x, t, x_self_cond)
-
-        # if self.is_student:
-        #     model_output = self.teacher.model(x, t*self.c_value, x_self_cond)
-        # else:
-        #     model_output = self.model(x, t, x_self_cond)
 
         maybe_clip = partial(torch.clamp, min = -1., max = 1.) if clip_x_start else identity
 
@@ -912,20 +892,13 @@ class GaussianDiffusion(nn.Module):
         loss = loss * extract(self.loss_weight, t, loss.shape)
         loss = loss.mean()
 
-        # if teacher is not None:
-        #     loss = loss + loss_t
-
         return loss
 
     def forward(self, img, *args, **kwargs):
-        # print("In forward func >>>>>>>>>>>~~~~~~~~~~")
 
         b, c, h, w, device, img_size, = *img.shape, img.device, self.image_size
         assert h == img_size and w == img_size, f'height and width of image must be {img_size}'
         t = torch.randint(0, self.num_timesteps, (b,), device=device).long()
-
-        # print("t shape:", t.shape)
-        # print("t = ", t)
 
         img = self.normalize(img)
         return self.p_losses(img, t, *args, **kwargs)

@@ -39,7 +39,7 @@ def get_args():
     args = argparse.ArgumentParser()
 
     args.add_argument('--cuda', default=True, action='store_true', help='using cuda')
-    args.add_argument('--dataset', type=str, default='cifar10', help='cifar10, svhn, cifar100')
+    args.add_argument('--dataset', type=str, default='cifar10')
 
     args.add_argument('--batch_size', type=int, default=10)
     args.add_argument('--transform', default=True, action='store_true')
@@ -51,7 +51,7 @@ def get_args():
     args.add_argument('--milestones', nargs='+', default=[60, 80], type=float)
     args.add_argument('--num_stages', type=int, default=1)
 
-    args.add_argument('--save_path', type=str, default='res/cifar100_resnet34_resnet18')
+    args.add_argument('--save_path', type=str, default='res/cifar10')
 
     args = args.parse_args()
     return args
@@ -60,7 +60,7 @@ def get_args():
 def run_diff_stealing(args):
     diff_stealing = DiffStealing(args)
     diff_stealing.load_data()
-    diff_stealing.set_all_nets(target_path='trained_models/target_models/Cifar10_resnet18_nonormalize.pth',
+    diff_stealing.set_all_nets(target_path='trained_models/target_models/Cifar10_resnet18_global_model_round_1400_nonormalize.pth',
                                pretrained_diff=load_pretrained_gen(), path=None)
     diff_stealing.steal()
 
@@ -69,7 +69,7 @@ def get_fl_args():
     args = argparse.ArgumentParser()
 
     args.add_argument('--cuda', default=True, action='store_true', help='using cuda')
-    args.add_argument('--dataset', type=str, default='cifar10', help='cifar10, svhn, cifar100')
+    args.add_argument('--dataset', type=str, default='cifar10')
 
     args.add_argument('--num_clients', type=int, default=20)
     args.add_argument('--global_rounds', type=int, default=10000)

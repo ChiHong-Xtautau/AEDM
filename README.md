@@ -1,7 +1,25 @@
 # AEDM
 
-This is the code for the model stealing algorithm proposed by our ICONIP2024 paper "Chi Hong, Jiyue Huang, Lydia Chen, Robert Birke, Adversarial Knowledge Extraction via Steering Diffusion Models".
+This is the code for the algorithm proposed by our paper:
 
-This project relies on https://github.com/lucidrains/denoising-diffusion-pytorch/tree/main. To facilitating users, we provide a copy in this repo.
+"Chi Hong, Jiyue Huang, Lydia Y. Chen, and Robert Birke. "Adversarial Knowledge
+Extraction via Steering Diffusion Models." In the 31st International Conference on Neural
+Information Processing, 2024."
 
-To run the algorithm, please extract the pretrained diffusion model. You may replace the pretrained models by yours.
+This project relies on https://github.com/lucidrains/denoising-diffusion-pytorch/tree/main to implement diffusion models. To facilitating users, we provide a copy in this repo.
+
+# Before running
+To run the algorithm, please extract the pretrained diffusion model "trained_models/diffusion_models". Please use the command
+- sudo apt install p7zip-full
+- cd trained_models/diffusion_models/
+- 7z x my_zip.7z.001
+
+Then you will get the pretrained diffusion model on imagenet, and you can run the experiments. You may replace the pretrained models by yours.
+
+An example of running the algorithm is shown in "run.py".
+
+# To run this file
+The project is developed under python 3.8.10
+
+- pip install -r requirements.txt
+- python run.py

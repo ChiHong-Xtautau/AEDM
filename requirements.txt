@@ -1,0 +1,8 @@
+numpy==1.24.3
+torch==2.0.0
+torchvision==0.15.1
+tqdm==4.67.1
+einops==0.8.1
+ema_pytorch==0.7.7
+accelerate==0.25.0
+pytorch_fid==0.3.0

@@ -133,8 +133,8 @@ class DiffStealing(object):
         if self.args.dataset == 'cifar100':
             net_arch = ResNet34_Cifar100
         else:
-            # net_arch = ResNet34
-            net_arch = ResNet18
+            net_arch = ResNet34
+            # net_arch = ResNet18
 
         self.target_net = net_arch().to(self.device)
         # self.target_net = nn.DataParallel(self.target_net)
