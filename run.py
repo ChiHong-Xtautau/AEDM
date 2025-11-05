@@ -106,7 +106,3 @@ if __name__ == '__main__':
     args = get_args()
     # run_diff_stealing(args, generate_queries=True)
     run_diff_stealing(args, generate_queries=False)  # query samples already generated
-
-    # federated learning setting
-    # args = get_fl_args()
-    # run_fl_stealing(args)
