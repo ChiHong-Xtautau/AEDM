@@ -104,8 +104,8 @@ def run_fl_stealing(args):
 if __name__ == '__main__':
     # centralized learning setting
     args = get_args()
-    run_diff_stealing(args, generate_queries=True)
-    # run_diff_stealing(args, generate_queries=False)  # query samples already generated
+    # run_diff_stealing(args, generate_queries=True)
+    run_diff_stealing(args, generate_queries=False)  # query samples already generated
 
     # federated learning setting
     # args = get_fl_args()
