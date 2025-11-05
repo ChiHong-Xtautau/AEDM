@@ -9,6 +9,12 @@ class DiffusionUtils(object):
         self.data_loader = data_loader
         self.trained_model_dir = None
 
+        # self.trained_student_dir = None
+        #
+        # self.student_diff = student_diff
+        #
+        # self.autoencoder = autoencoder
+
     def set_dataloader(self, data_loader, mean_std=None):
         self.data_loader = data_loader
         self.mean_std = mean_std
@@ -17,6 +23,12 @@ class DiffusionUtils(object):
         self.trained_model_dir = trained_model_dir
         self.diffusion.load_state_dict(torch.load(self.trained_model_dir))
         self.diffusion.eval()
+
+    def load_trained_student(self, trained_student_dir):
+        self.trained_student_dir = trained_student_dir
+        self.student_diff.load_state_dict(torch.load(self.trained_student_dir))
+
+        # self.student_diff.model = self.diffusion.model
 
     def train(self, epochs=1, start_epochs=0, model_name=""):
 
@@ -49,7 +61,7 @@ class DiffusionUtils(object):
         sampled_images = self.diffusion.sample(batch_size=num_img, input_noise=input_noise)
         # torchvision.utils.save_image(sampled_images, save_dir.format(res_id), nrow=nrow, padding=2)
         return sampled_images
-
+    
 
 
 

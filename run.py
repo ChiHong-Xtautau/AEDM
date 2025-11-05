@@ -39,30 +39,30 @@ def get_args():
     args = argparse.ArgumentParser()
 
     args.add_argument('--cuda', default=True, action='store_true', help='using cuda')
-    args.add_argument('--dataset', type=str, default='cifar10')
+    args.add_argument('--dataset', type=str, default='cifar10', help='cifar10, svhn, cifar100')
 
-    args.add_argument('--batch_size', type=int, default=10)
+    args.add_argument('--batch_size', type=int, default=50)
     args.add_argument('--transform', default=True, action='store_true')
     args.add_argument('--z_dim', type=int, default=128)
-    args.add_argument('--substitute_net', type=str, default='ResNet18', help="ResNet18, VGG13, VGG16, VGG19")
+    args.add_argument('--substitute_net', type=str, default='VGG16', help="ResNet18, VGG13, VGG16, VGG19")
     args.add_argument('--substitute_loss', type=str, default='l1', help='l1, ce')
-    args.add_argument('--queries_per_stage', type=int, default=20000)
+    args.add_argument('--queries_per_stage', type=int, default=100000)
     args.add_argument('--epochs_per_stage', type=int, default=100)
-    args.add_argument('--milestones', nargs='+', default=[60, 80], type=float)
+    args.add_argument('--milestones', nargs='+', default=[90], type=float)
     args.add_argument('--num_stages', type=int, default=1)
 
-    args.add_argument('--save_path', type=str, default='res/cifar10')
+    args.add_argument('--save_path', type=str, default='res/cifar10_resnet34_vgg16', help="for saving the experimental results")
 
     args = args.parse_args()
     return args
 
 
-def run_diff_stealing(args):
+def run_diff_stealing(args, generate_queries=True):
     diff_stealing = DiffStealing(args)
     diff_stealing.load_data()
-    diff_stealing.set_all_nets(target_path='trained_models/target_models/Cifar10_resnet18_global_model_round_1400_nonormalize.pth',
+    diff_stealing.set_all_nets(target_path='trained_models/target_models/resnet34_cifar10_nonormalization_n.pth',
                                pretrained_diff=load_pretrained_gen(), path=None)
-    diff_stealing.steal()
+    diff_stealing.steal(generate_queries=generate_queries)
 
 
 def get_fl_args():
@@ -71,11 +71,11 @@ def get_fl_args():
     args.add_argument('--cuda', default=True, action='store_true', help='using cuda')
     args.add_argument('--dataset', type=str, default='cifar10')
 
-    args.add_argument('--num_clients', type=int, default=20)
+    args.add_argument('--num_clients', type=int, default=5)
     args.add_argument('--global_rounds', type=int, default=10000)
     args.add_argument('--test_interval', type=int, default=10)
     args.add_argument('--if_query', default=True, action='store_true')
-    args.add_argument('--max_batch_idx', type=int, default=99)
+    args.add_argument('--max_batch_idx', type=int, default=399)
 
     args.add_argument('--batch_size', type=int, default=50)
     args.add_argument('--transform', default=True, action='store_true')
@@ -87,7 +87,7 @@ def get_fl_args():
     args.add_argument('--milestones', nargs='+', default=[120, 160, 180], type=float)
     args.add_argument('--num_stages', type=int, default=1)
 
-    args.add_argument('--save_path', type=str, default='res/fl_cifar10_resnet34_vgg16')
+    args.add_argument('--save_path', type=str, default='res/fl_cifar10_resnet34_vgg16_05clients_100000queries')
 
     args = args.parse_args()
     return args
@@ -96,14 +96,17 @@ def get_fl_args():
 def run_fl_stealing(args):
     fl_stealing = FLStealing(args)
     fl_stealing.load_data()
-    fl_stealing.set_all_nets(target_path='trained_models/target_models/Cifar10_resnet18_nonormalize.pth',
+    fl_stealing.set_all_nets(target_path='trained_models/target_models/resnet34_cifar10_nonormalization_n.pth',
                                pretrained_diff=load_pretrained_gen(), path=None)
     fl_stealing.federated_train()
 
 
 if __name__ == '__main__':
+    # centralized learning setting
     args = get_args()
-    run_diff_stealing(args)
+    run_diff_stealing(args, generate_queries=True)
+    # run_diff_stealing(args, generate_queries=False)  # query samples already generated
 
+    # federated learning setting
     # args = get_fl_args()
     # run_fl_stealing(args)

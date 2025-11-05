@@ -12,6 +12,7 @@ import os
 import random
 
 from src.resnet import ResNet18, ResNet34, ResNet34_Cifar100, ResNet18_Cifar100
+from src.generators import NetGen
 from src.vgg import VGG19, VGG16, VGG13, VGG11
 import src.common as comm
 
@@ -27,6 +28,8 @@ class DiffStealing(object):
         self.target_net = None
 
         self.diff = None
+
+        self.generator = None
 
         self.substitute = None
 
@@ -84,9 +87,6 @@ class DiffStealing(object):
         self.set_generators(pretrained_diff)
         self.set_target(target_path)
 
-    def set_generators(self, pretrained_diff):
-        self.diff = pretrained_diff
-
     def set_substitute(self, path=None):
         if self.args.substitute_net == 'ResNet18':
             if self.args.dataset == 'cifar100':
@@ -129,12 +129,15 @@ class DiffStealing(object):
             self.substitute.load_state_dict(state_dict)
         self.substitute.train()
 
+    def set_generators(self, pretrained_diff):
+        self.diff = pretrained_diff
+        self.generator = NetGen(nz=self.args.z_dim, nc=3, img_size=32).to(self.device)
+
     def set_target(self, target_path=None):
         if self.args.dataset == 'cifar100':
             net_arch = ResNet34_Cifar100
         else:
             net_arch = ResNet34
-            # net_arch = ResNet18
 
         self.target_net = net_arch().to(self.device)
         # self.target_net = nn.DataParallel(self.target_net)
@@ -150,12 +153,14 @@ class DiffStealing(object):
         acc = comm.accuracy(self.substitute, self.test_loader, self.device)
         logging.info('Accuracy of the substitute model: %.2f %%' % acc)
 
-    def steal(self):
+    def steal(self, generate_queries=True):
         self.show_substitute_acc()
         for i in range(self.args.num_stages):
             logging.info('stage: {} / {}'.format(i+1, self.args.num_stages))
-            self.query()
-            # self.idx_query = 50
+            if generate_queries:
+                self.query()
+            else:
+                self.idx_query = 2000 # number of existing query batches
             self.train_substitute()
 
     def train_substitute(self):

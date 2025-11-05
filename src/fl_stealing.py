@@ -2,6 +2,7 @@ import torch.nn.functional as F
 import torchvision.transforms.functional as Ft
 
 from src.fedrated_learning import *
+from src.generators import NetGen
 
 
 class FLStealing(EasyFL):
@@ -27,8 +28,7 @@ class FLStealing(EasyFL):
         if self.args.dataset == 'cifar100':
             net_arch = ResNet34_Cifar100
         else:
-            # net_arch = ResNet34
-            net_arch = ResNet18
+            net_arch = ResNet34
         self.target_net = net_arch().to(self.device)
 
         state_dict = torch.load(target_path, map_location=self.device)
