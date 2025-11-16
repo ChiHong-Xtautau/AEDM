@@ -1,0 +1,205 @@
+Namespace(batch_size=50, cuda=True, dataset='cifar10', epochs_per_stage=100, milestones=[90], num_stages=1, queries_per_stage=100000, save_path='res/cifar10_resnet34_vgg16', substitute_loss='l1', substitute_net='VGG16', transform=True, z_dim=128)
+Accuracy of the target model: 96.59 %
+Accuracy of the substitute model: 10.00 %
+stage: 1 / 1
+Training:
+epoch: 1 / 100
+Accuracy of the substitute model: 21.64 %
+epoch: 2 / 100
+Accuracy of the substitute model: 28.33 %
+epoch: 3 / 100
+Accuracy of the substitute model: 29.54 %
+epoch: 4 / 100
+Accuracy of the substitute model: 41.99 %
+epoch: 5 / 100
+Accuracy of the substitute model: 45.08 %
+epoch: 6 / 100
+Accuracy of the substitute model: 51.17 %
+epoch: 7 / 100
+Accuracy of the substitute model: 51.93 %
+epoch: 8 / 100
+Accuracy of the substitute model: 58.28 %
+epoch: 9 / 100
+Accuracy of the substitute model: 57.14 %
+epoch: 10 / 100
+Accuracy of the substitute model: 61.95 %
+epoch: 11 / 100
+Accuracy of the substitute model: 67.00 %
+epoch: 12 / 100
+Accuracy of the substitute model: 64.57 %
+epoch: 13 / 100
+Accuracy of the substitute model: 73.12 %
+epoch: 14 / 100
+Accuracy of the substitute model: 73.83 %
+epoch: 15 / 100
+Accuracy of the substitute model: 75.27 %
+epoch: 16 / 100
+Accuracy of the substitute model: 75.92 %
+epoch: 17 / 100
+Accuracy of the substitute model: 77.49 %
+epoch: 18 / 100
+Accuracy of the substitute model: 78.02 %
+epoch: 19 / 100
+Accuracy of the substitute model: 80.03 %
+epoch: 20 / 100
+Accuracy of the substitute model: 79.69 %
+epoch: 21 / 100
+Accuracy of the substitute model: 80.68 %
+epoch: 22 / 100
+Accuracy of the substitute model: 81.41 %
+epoch: 23 / 100
+Accuracy of the substitute model: 80.89 %
+epoch: 24 / 100
+Accuracy of the substitute model: 82.55 %
+epoch: 25 / 100
+Accuracy of the substitute model: 83.09 %
+epoch: 26 / 100
+Accuracy of the substitute model: 80.50 %
+epoch: 27 / 100
+Accuracy of the substitute model: 83.16 %
+epoch: 28 / 100
+Accuracy of the substitute model: 83.20 %
+epoch: 29 / 100
+Accuracy of the substitute model: 83.56 %
+epoch: 30 / 100
+Accuracy of the substitute model: 83.99 %
+epoch: 31 / 100
+Accuracy of the substitute model: 84.64 %
+epoch: 32 / 100
+Accuracy of the substitute model: 83.67 %
+epoch: 33 / 100
+Accuracy of the substitute model: 84.94 %
+epoch: 34 / 100
+Accuracy of the substitute model: 85.20 %
+epoch: 35 / 100
+Accuracy of the substitute model: 85.54 %
+epoch: 36 / 100
+Accuracy of the substitute model: 84.76 %
+epoch: 37 / 100
+Accuracy of the substitute model: 85.55 %
+epoch: 38 / 100
+Accuracy of the substitute model: 85.77 %
+epoch: 39 / 100
+Accuracy of the substitute model: 85.53 %
+epoch: 40 / 100
+Accuracy of the substitute model: 85.00 %
+epoch: 41 / 100
+Accuracy of the substitute model: 85.92 %
+epoch: 42 / 100
+Accuracy of the substitute model: 85.66 %
+epoch: 43 / 100
+Accuracy of the substitute model: 86.02 %
+epoch: 44 / 100
+Accuracy of the substitute model: 86.40 %
+epoch: 45 / 100
+Accuracy of the substitute model: 85.83 %
+epoch: 46 / 100
+Accuracy of the substitute model: 86.68 %
+epoch: 47 / 100
+Accuracy of the substitute model: 86.22 %
+epoch: 48 / 100
+Accuracy of the substitute model: 86.26 %
+epoch: 49 / 100
+Accuracy of the substitute model: 86.40 %
+epoch: 50 / 100
+Accuracy of the substitute model: 86.38 %
+epoch: 51 / 100
+Accuracy of the substitute model: 86.67 %
+epoch: 52 / 100
+Accuracy of the substitute model: 87.09 %
+epoch: 53 / 100
+Accuracy of the substitute model: 86.75 %
+epoch: 54 / 100
+Accuracy of the substitute model: 87.26 %
+epoch: 55 / 100
+Accuracy of the substitute model: 87.26 %
+epoch: 56 / 100
+Accuracy of the substitute model: 86.89 %
+epoch: 57 / 100
+Accuracy of the substitute model: 86.93 %
+epoch: 58 / 100
+Accuracy of the substitute model: 86.77 %
+epoch: 59 / 100
+Accuracy of the substitute model: 87.45 %
+epoch: 60 / 100
+Accuracy of the substitute model: 87.24 %
+epoch: 61 / 100
+Accuracy of the substitute model: 87.43 %
+epoch: 62 / 100
+Accuracy of the substitute model: 86.90 %
+epoch: 63 / 100
+Accuracy of the substitute model: 87.20 %
+epoch: 64 / 100
+Accuracy of the substitute model: 86.25 %
+epoch: 65 / 100
+Accuracy of the substitute model: 87.05 %
+epoch: 66 / 100
+Accuracy of the substitute model: 86.64 %
+epoch: 67 / 100
+Accuracy of the substitute model: 86.78 %
+epoch: 68 / 100
+Accuracy of the substitute model: 86.84 %
+epoch: 69 / 100
+Accuracy of the substitute model: 86.71 %
+epoch: 70 / 100
+Accuracy of the substitute model: 87.29 %
+epoch: 71 / 100
+Accuracy of the substitute model: 87.10 %
+epoch: 72 / 100
+Accuracy of the substitute model: 87.04 %
+epoch: 73 / 100
+Accuracy of the substitute model: 87.63 %
+epoch: 74 / 100
+Accuracy of the substitute model: 87.31 %
+epoch: 75 / 100
+Accuracy of the substitute model: 87.19 %
+epoch: 76 / 100
+Accuracy of the substitute model: 87.08 %
+epoch: 77 / 100
+Accuracy of the substitute model: 87.46 %
+epoch: 78 / 100
+Accuracy of the substitute model: 87.31 %
+epoch: 79 / 100
+Accuracy of the substitute model: 87.25 %
+epoch: 80 / 100
+Accuracy of the substitute model: 87.44 %
+epoch: 81 / 100
+Accuracy of the substitute model: 87.04 %
+epoch: 82 / 100
+Accuracy of the substitute model: 87.74 %
+epoch: 83 / 100
+Accuracy of the substitute model: 87.39 %
+epoch: 84 / 100
+Accuracy of the substitute model: 87.47 %
+epoch: 85 / 100
+Accuracy of the substitute model: 87.36 %
+epoch: 86 / 100
+Accuracy of the substitute model: 87.37 %
+epoch: 87 / 100
+Accuracy of the substitute model: 87.52 %
+epoch: 88 / 100
+Accuracy of the substitute model: 87.17 %
+epoch: 89 / 100
+Accuracy of the substitute model: 86.68 %
+epoch: 90 / 100
+Accuracy of the substitute model: 87.44 %
+epoch: 91 / 100
+Accuracy of the substitute model: 88.05 %
+epoch: 92 / 100
+Accuracy of the substitute model: 88.27 %
+epoch: 93 / 100
+Accuracy of the substitute model: 88.30 %
+epoch: 94 / 100
+Accuracy of the substitute model: 88.28 %
+epoch: 95 / 100
+Accuracy of the substitute model: 88.52 %
+epoch: 96 / 100
+Accuracy of the substitute model: 88.36 %
+epoch: 97 / 100
+Accuracy of the substitute model: 88.38 %
+epoch: 98 / 100
+Accuracy of the substitute model: 88.19 %
+epoch: 99 / 100
+Accuracy of the substitute model: 88.44 %
+epoch: 100 / 100
+Accuracy of the substitute model: 88.22 %

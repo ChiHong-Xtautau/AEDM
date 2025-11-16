@@ -25,6 +25,7 @@ The project is developed under python 3.8.10
 - python run.py
 
 # Expected Results
+After running the example "run.py", we can get the following expected Results. Please note that due to randomness, the final results you have may differ slightly from what is shown here.
 - You will see the target model accuracy is 96.59 %.
 - The accuracy of the substitute model will increaces with training over multiple epochs
 - one training log is shown in "./cifar10_queries_100000.log"
